@@ -1,0 +1,415 @@
+/* CSS Variables for Theming */
+:root {
+    --bg-color: #121212;
+    --surface-color: #1e1e1e;
+    --surface-hover: #2c2c2c;
+    --text-primary: #ffffff;
+    --text-secondary: #aaaaaa;
+    --primary-color: #bb86fc;
+    --primary-hover: #9965f4;
+    --success-color: #03dac6;
+    --danger-color: #cf6679;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --border-radius: 12px;
+    --transition: all 0.3s ease;
+}[data-theme="light"] {
+    --bg-color: #f5f7fa;
+    --surface-color: #ffffff;
+    --surface-hover: #f0f0f0;
+    --text-primary: #2d3748;
+    --text-secondary: #718096;
+    --primary-color: #667eea;
+    --primary-hover: #5a67d8;
+    --success-color: #48bb78;
+    --danger-color: #f56565;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Base Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    transition: var(--transition);
+    padding-bottom: 80px; /* Space for FAB */
+}
+
+/* Header */
+header {
+    background-color: var(--surface-color);
+    padding: 1rem 5%;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.header-actions button {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin-left: 15px;
+    color: var(--text-primary);
+    transition: var(--transition);
+}
+
+.header-actions button:hover {
+    transform: scale(1.1);
+}
+
+/* Stats Dashboard */
+#statsDashboard {
+    max-width: 800px;
+    margin: 1.5rem auto;
+    padding: 0 5%;
+}
+
+#statsDashboard h2 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: var(--text-secondary);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.stat-card {
+    background-color: var(--surface-color);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    box-shadow: var(--shadow);
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.progress-bar-container {
+    height: 8px;
+    background-color: var(--surface-color);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: var(--success-color);
+    width: 0%;
+    transition: width 0.5s ease-in-out;
+}
+
+/* Habit List */
+#habitList {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.empty-state {
+    text-align: center;
+    color: var(--text-secondary);
+    margin-top: 2rem;
+}
+
+.habit-card {
+    background-color: var(--surface-color);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.habit-card.completed {
+    opacity: 0.7;
+    border-left: 4px solid var(--success-color);
+}
+
+.habit-info {
+    flex-grow: 1;
+}
+
+.habit-name {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.habit-card.completed .habit-name {
+    text-decoration: line-through;
+    color: var(--text-secondary);
+}
+
+.habit-meta {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    display: flex;
+    gap: 10px;
+}
+
+.habit-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.btn-toggle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--text-secondary);
+    background: transparent;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+
+.habit-card.completed .btn-toggle {
+    border-color: var(--success-color);
+    background-color: var(--success-color);
+    color: #fff;
+}
+
+.btn-delete {
+    background: none;
+    border: none;
+    color: var(--danger-color);
+    cursor: pointer;
+    font-size: 1.2rem;
+    opacity: 0.6;
+    transition: var(--transition);
+}
+
+.btn-delete:hover {
+    opacity: 1;
+}
+
+/* Floating Action Button */
+#fab {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 1.8rem;
+    border: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    cursor: pointer;
+    z-index: 100;
+    transition: var(--transition);
+}
+
+#fab:hover {
+    background-color: var(--primary-hover);
+    transform: scale(1.05);
+}
+
+/* Modal */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 1;
+    transition: var(--transition);
+}
+
+.modal-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal {
+    background-color: var(--surface-color);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    transform: translateY(0);
+    transition: var(--transition);
+}
+
+.modal-overlay.hidden .modal {
+    transform: translateY(20px);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.input-with-action {
+    display: flex;
+    gap: 10px;
+}
+
+input[type="text"], input[type="time"] {
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 8px;
+    border: 1px solid #333;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+[data-theme="light"] input[type="text"],[data-theme="light"] input[type="time"] {
+    border: 1px solid #ccc;
+}
+
+#voiceInputBtn {
+    background-color: var(--surface-hover);
+    border: none;
+    border-radius: 8px;
+    width: 50px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+#voiceInputBtn.listening {
+    background-color: var(--danger-color);
+    animation: pulse 1.5s infinite;
+}
+
+.voice-status {
+    display: block;
+    margin-top: 5px;
+    color: var(--primary-color);
+    font-size: 0.8rem;
+    min-height: 15px;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.submit-btn:hover {
+    background-color: var(--primary-hover);
+}
+
+/* Notification Banner */
+.notification-banner {
+    position: fixed;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 9;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.notification-banner.hidden {
+    top: -100px;
+}
+
+.notification-banner button {
+    background: white;
+    color: var(--primary-color);
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@media (max-width: 600px) {
+    #fab {
+        bottom: 20px;
+        right: 20px;
+    }
+}

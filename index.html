@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Smart Habit Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Habit Tracker <span>🔥</span></h1>
+            <div class="header-actions">
+                <button id="clearAllBtn" title="Clear all habits">🗑️</button>
+                <button id="themeToggle" title="Toggle Light/Dark Mode">☀️</button>
+            </div>
+        </div>
+    </header>
+
+    <section id="statsDashboard">
+        <h2>Today's Progress</h2>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span id="completedCount" class="stat-value">0/0</span>
+                <span class="stat-label">Completed</span>
+            </div>
+            <div class="stat-card">
+                <span id="completionPercent" class="stat-value">0%</span>
+                <span class="stat-label">Success Rate</span>
+            </div>
+            <div class="stat-card">
+                <span id="bestStreakOverall" class="stat-value">0</span>
+                <span class="stat-label">Best Streak</span>
+            </div>
+        </div>
+        <div class="progress-bar-container">
+            <div id="progressBar" class="progress-bar"></div>
+        </div>
+    </section>
+
+    <main id="habitList">
+        <!-- Habit cards will be injected here via JavaScript -->
+        <div id="emptyState" class="empty-state">
+            <p>No habits yet. Tap the + button to add one!</p>
+        </div>
+    </main>
+
+    <button id="fab" title="Add Habit">➕</button>
+
+    <!-- Modal for Adding/Editing Habits -->
+    <div id="habitModal" class="modal-overlay hidden">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Add New Habit</h2>
+                <button id="closeModalBtn" class="close-btn">✖</button>
+            </div>
+            <form id="habitForm">
+                <div class="form-group">
+                    <label for="habitName">Habit Name</label>
+                    <div class="input-with-action">
+                        <input type="text" id="habitName" placeholder="e.g., Drink Water" required>
+                        <button type="button" id="voiceInputBtn" title="Use Voice Input">🎤</button>
+                    </div>
+                    <small id="voiceStatus" class="voice-status"></small>
+                </div>
+                <div class="form-group">
+                    <label for="habitTime">Reminder Time (Optional)</label>
+                    <input type="time" id="habitTime">
+                </div>
+                <button type="submit" class="submit-btn">Save Habit</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Notification Permission Banner -->
+    <div id="notificationBanner" class="notification-banner hidden">
+        <p>Enable notifications for smart reminders!</p>
+        <button id="enableNotifBtn">Enable</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
